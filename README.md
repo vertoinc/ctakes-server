@@ -5,8 +5,8 @@
 * To set up necessary resources, run the following:
 
 ```bash
-ln -s $CTAKES_HOME/resources resources 
-ln -s $CTAKES_HOME/desc desc 
+ln -s $CTAKES_HOME/resources resources
+ln -s $CTAKES_HOME/desc desc
 ```
 
 
@@ -21,6 +21,23 @@ You can then use the REST service via GET requests with parameters "text". E.g.,
 http://localhost:9999/ctakes?text=Pain in the left leg.
 ```
 
+# Running from Docker #
+1. Clone this repository
+```
+https://github.com/choyiny/ctakes-server.git
+```
+2. Create an `.env` file with the following information
+```
+HOST=0.0.0.0
+PORT=9999
+UMLSUSER=<YOUR UMLS USERNAME>
+UMLSPW=<YOUR UMLS PASSWORD>
+```
+3. Run docker compose on daemon mode
+```
+docker-compose up -d
+```
+
 # YTex Install Notes #
 
 * Follow YTex installation on [ctakes website](https://cwiki.apache.org/confluence/display/CTAKES/YTEX+Installation)
@@ -29,14 +46,14 @@ http://localhost:9999/ctakes?text=Pain in the left leg.
 
 ## Recommendations ##
 * use desc/ctakes-ytex-uima/desc/analysis_engine/AggregatePlaintextUMLSProcessor.xml
-* comment assertion-node, because it requires a different scala version and is therefore not supported: 
+* comment assertion-node, because it requires a different scala version and is therefore not supported:
 ```xml
 <!--node>AssertionAnnotator</node-->
 ```
 * exchange DictionaryLookupAnnotatorDB location to the following (because it works better):
 ```xml
-<delegateAnalysisEngine key="DictionaryLookupAnnotatorDB"> 
-    <!--import location="./DictionaryLookupAnnotator.xml" /--> 
-    <import location="../../../ctakes-dictionary-lookup-fast/desc/analysis_engine/UmlsLookupAnnotator.xml"/> 
+<delegateAnalysisEngine key="DictionaryLookupAnnotatorDB">
+    <!--import location="./DictionaryLookupAnnotator.xml" /-->
+    <import location="../../../ctakes-dictionary-lookup-fast/desc/analysis_engine/UmlsLookupAnnotator.xml"/>
 </delegateAnalysisEngine>
 ```
