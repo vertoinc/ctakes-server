@@ -16,9 +16,9 @@ RUN cp -a resources /apache-ctakes/resources
 
 RUN mkdir sno_rx_16ab
 ADD https://phoenixnap.dl.sourceforge.net/project/ctakesresources/sno_rx_16ab.zip /sno_rx_16ab
-RUN unzip sno_rx_16ab.zip
+RUN unzip sno_rx_16ab/sno_rx_16ab.zip
 
-COPY sno_rx_16ab /apache-ctakes/resources/org/apache/ctakes/dictionary
+RUN mv sno_rx_16ab /apache-ctakes/resources/org/apache/ctakes/dictionary
 
 RUN rm ctakes-resources-4.0-bin.zip
 RUN rm -rf sno_rx_16ab
