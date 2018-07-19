@@ -31,10 +31,4 @@ ADD pom.xml /app
 RUN ln -s ../apache-ctakes/resources resources
 RUN ln -s ../apache-ctakes/desc desc
 
-ARG port
-ARG umls_id
-ARG umls_pw
-
 RUN mvn package
-
-EXPOSE $port
